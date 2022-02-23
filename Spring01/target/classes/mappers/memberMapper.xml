@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+
+	<select id="login" resultType="kr.co.vo.MemberVO">
+		SELECT ADMIN_ID, ADMIN_PW
+			FROM SPRING_ADMIN
+			WHERE ADMIN_ID = #{admin_id}
+			AND ADMIN_PW = #{admin_pw}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO DEALER_INFO(DEALER_NO, USER_GROUP_ID, DEALER_NAME, HOME_TEL_NO, EMAIL, GROUP_PART, WORK_GROUP, SHA_PASSWD, MY_CTI_MANAGER_ID)
+			VALUES(#{dealer_no}, 'RC_003', #{dealer_name}, #{home_tel_no}, #{email}, #{group_part}, #{work_group}, #{sha_passwd}, #{my_cti_manager_id})
+	</insert>
+	
+	<select id="listPage" resultType="kr.co.vo.MemberVO" parameterType="kr.co.vo.Criteria">
+		SELECT DEALER_NO, USER_GROUP_ID, DEALER_NAME, HOME_TEL_NO, START_DATE, EMAIL, GROUP_PART, WORK_GROUP, LOGIN_ABLE, LEAVE_DATE
+		 FROM (
+				SELECT DEALER_NO, USER_GROUP_ID, DEALER_NAME, HOME_TEL_NO, START_DATE, EMAIL, GROUP_PART, WORK_GROUP, LOGIN_ABLE, LEAVE_DATE,
+				ROW_NUMBER() OVER(ORDER BY START_DATE DESC) AS RNUM
+				FROM DEALER_INFO WHERE 1=1
+				<include refid="search"></include>
+			  ) DI
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} AND USER_GROUP_ID = 'RC_003'
+		ORDER BY START_DATE DESC
+	</select>
+	
+	<select id="listCount" resultType="int" parameterType="kr.co.vo.SearchCriteria">
+		SELECT COUNT(USER_GROUP_ID)
+			FROM DEALER_INFO WHERE 1=1
+		<include refid="search"></include>
+			AND USER_GROUP_ID = 'RC_003'
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'i'.toString()">AND DEALER_NO LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'n'.toString()">AND DEALER_NAME LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 't'.toString()">AND HOME_TEL_NO LIKE '%' || #{keyword} || '%'</if>
+		</if>
+	</sql>
+	
+	<select id="detail" parameterType="String" resultType="kr.co.vo.MemberVO">
+		SELECT DEALER_NO, USER_GROUP_ID, DEALER_NAME, HOME_TEL_NO, MY_CTI_MANAGER_ID, START_DATE, END_DATE, EMAIL, GROUP_PART, WORK_GROUP, LOGIN_ABLE, LEAVE_DATE
+			FROM DEALER_INFO WHERE DEALER_NO = #{dealer_no}
+	</select>
+	
+	<update id="update" parameterType="kr.co.vo.MemberVO">
+		UPDATE DEALER_INFO
+		SET DEALER_NAME = #{dealer_name}, 
+			HOME_TEL_NO = #{home_tel_no},
+			END_DATE = #{end_date},
+			EMAIL = #{email},
+			GROUP_PART = #{group_part},
+			WORK_GROUP = #{work_group},
+			LOGIN_ABLE = #{login_able},
+			LEAVE_DATE = #{leave_date},
+			LEAVE_UDATE_DATE = SYSDATE
+			WHERE DEALER_NO = #{dealer_no}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE
+			FROM DEALER_INFO
+			WHERE DEALER_NO = #{dealer_no}
+	</delete>
+
+</mapper>
