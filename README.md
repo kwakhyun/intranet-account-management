@@ -1,2 +1,2 @@
 # Intranet account management
-Java Spring MVC
+Spring MVC, Apache Tomcat, Oracle DB
