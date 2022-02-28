@@ -1,2 +1,2 @@
 # Intranet account management
-Java Spring web application
+Java, Spring Framework, Apache Tomcat, Oracle Database
