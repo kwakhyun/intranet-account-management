@@ -11,17 +11,50 @@
 	 	<title>사내 계정 관리</title>
 	</head>
 	
-	<body class="body">
+	<body>
 		<div id="container">
 			<header>
 				<h1>계정 조회</h1>
 			</header>
-			<hr />
+			<hr>
 
 			<div>
 				<%@include file="nav.jsp" %>
 			</div>
-			<hr />
+			<hr>
+			
+			<div class="search row">
+				<div class="col-xs-2 col-sm-2">
+					<select name="searchType" class="form-control">
+						<option value="s" <c:out value="${scri.searchType == null ? 'selected' : ''}" />>선택</option>
+						<option value="i" <c:out value="${scri.searchType eq 'i' ? 'selected' : ''}" />>아이디</option>
+						<option value="n" <c:out value="${scri.searchType eq 'n' ? 'selected' : ''}" />>이름</option>
+						<option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}" />>전화번호</option>
+					</select>
+				</div>
+				
+				<div class="col-xs-10 col-sm-10">
+					<div class="input-group">
+						<input type="text" name="keyword" id="keywordId" value="${scri.keyword}" class="form-control" />
+						<span class="input-group-btn">
+							<button id="searchBtn" type="button" class="btn btn-default">검색</button>
+						</span>
+					</div>
+				</div>
+				
+				<script>
+					$(function() {
+						$('#searchBtn').click(function() {
+							self.location = "list"
+							+ '${pageMaker.makeQuery(1)}'
+							+ "&searchType="
+							+ $("select option:selected").val()
+							+ "&keyword=" + encodeURIComponent($('#keywordId').val());
+						});
+					});
+				</script>
+			</div>
+			<br>
 			
 			<section id="container">
 				<form role="form" method="get">
@@ -66,38 +99,6 @@
 						</c:forEach>
 					</table>
 					
-					<div class="search row">
-						<div class="col-xs-2 col-sm-2">
-							<select name="searchType" class="form-control">
-								<option value="s" <c:out value="${scri.searchType == null ? 'selected' : ''}" />>선택</option>
-								<option value="i" <c:out value="${scri.searchType eq 'i' ? 'selected' : ''}" />>아이디</option>
-								<option value="n" <c:out value="${scri.searchType eq 'n' ? 'selected' : ''}" />>이름</option>
-								<option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}" />>전화번호</option>
-							</select>
-						</div>
-						
-						<div class="col-xs-10 col-sm-10">
-							<div class="input-group">
-								<input type="text" name="keyword" id="keywordId" value="${scri.keyword}" class="form-control" />
-								<span class="input-group-btn">
-									<button id="searchBtn" type="button" class="btn btn-default">검색</button>
-								</span>
-							</div>
-						</div>
-						
-						<script>
-							$(function() {
-								$('#searchBtn').click(function() {
-									self.location = "list"
-									+ '${pageMaker.makeQuery(1)}'
-									+ "&searchType="
-									+ $("select option:selected").val()
-									+ "&keyword=" + encodeURIComponent($('#keywordId').val());
-								});
-							});
-						</script>
-					</div>
-					
 					<div class="page">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
@@ -116,7 +117,7 @@
 					
 				</form>
 			</section>
-			<hr />
+			<hr>
 		</div>
 	</body>
 </html>
