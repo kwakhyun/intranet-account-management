@@ -5,7 +5,6 @@
 	<head>
 		<link rel="stylesheet" href="/resources/css/reset.css">
 		<link rel="stylesheet" href="/resources/css/style.css">
-		<link rel="stylesheet" href="https://unpkg.com/mvp.css">
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	 	<title>사내 계정 정보</title>
 	</head>
@@ -35,18 +34,18 @@
 			})
 		})
 	</script>
-	<body class="body">
+	<body>
 	
 		<div id="container">
 			<header>
 				<h1>계정 상세</h1>
 			</header>
-			<hr />
+			<hr>
 			 
 			<div>
 				<%@include file="nav.jsp" %>
 			</div>
-			<hr />
+			<hr>
 			
 			<section id="container">
 				<form role="form" method="post" name="detailForm">
@@ -120,11 +119,11 @@
 					
 					<div id="btn">
 						<c:if test="${admin != null}"><button type="submit" class="update_btn">수정</button></c:if>
-						<c:if test="${admin != null}"><button type="submit" class="delete_btn">삭제</button></c:if>
+						<!-- <c:if test="${admin != null}"><button type="submit" class="delete_btn">삭제</button></c:if> -->
 						<button type="submit" class="list_btn">목록</button>
 					</div>
 			</section>
-			<hr />
+			<hr>
 		</div>
 	</body>
 </html>
