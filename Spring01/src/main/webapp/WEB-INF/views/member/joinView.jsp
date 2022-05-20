@@ -33,18 +33,18 @@
 		}
 	}
 </script>
-<body class="body">
+<body>
 
 	<div id="root">
 		<header>
 			<h1>계정 생성</h1>
 		</header>
-		<hr />
+		<hr>
 
 		<div>
 			<%@include file="nav.jsp"%>
 		</div>
-		<hr />
+		<hr>
 
 		<section id="container">
 			<form name="joinForm" method="post" action="/member/join">
@@ -103,7 +103,7 @@
 				
 			</form>
 		</section>
-		<hr />
+		<hr>
 	</div>
 </body>
 </html>
