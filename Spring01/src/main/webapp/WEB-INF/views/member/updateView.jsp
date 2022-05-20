@@ -43,18 +43,18 @@
 		}
 	}
 </script>
-<body class="body">
+<body>
 
 	<div id="root">
 		<header>
 			<h1>계정 수정</h1>
 		</header>
-		<hr />
+		<hr>
 
 		<div>
 			<%@include file="nav.jsp"%>
 		</div>
-		<hr />
+		<hr>
 
 		<section id="container">
 			<form name="updateForm" method="post" action="/member/update">
@@ -127,7 +127,7 @@
 				
 			</form>
 		</section>
-		<hr />
+		<hr>
 	</div>
 </body>
 </html>
