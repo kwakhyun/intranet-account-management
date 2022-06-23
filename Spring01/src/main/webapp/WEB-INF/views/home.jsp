@@ -25,13 +25,14 @@
 				<c:if test="${admin == null}">
 					<input type="text" id="admin_id" name="admin_id" class="input-field" placeholder="Enter User ID" required="required">
 					<input type="password" id="admin_pw" name="admin_pw" class="input-field" placeholder="Enter Password" required="required">
-					<input type="checkbox" class="checkbox"><span>Remember ID</span>
 					<button type="submit" class="submit">Login</button>
 				</c:if>
 				<c:if test="${admin != null }">
-					<div>
-						<p>접속 관리자 : ${admin.admin_id}</p>
-						<button id="logoutBtn" type="button" class="submit">Logout</button>
+					<div class="link">
+						<a href="/member/list">계정 조회</a>
+					</div>
+					<div class="link">
+						<a href="/member/joinView">계정 생성</a>
 					</div>
 				</c:if>
 			
