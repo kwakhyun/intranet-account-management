@@ -1,3 +1,5 @@
-# Intranet account management
-### 실무에서 1년간 사용했던 개인 프로젝트입니다.
-- Java, Spring Framework, Apache Tomcat, Oracle Database
+## 인트라넷 계정 관리 웹 애플리케이션
+
+- 실무에 적용했던 계정 관리 웹 애플리케이션으로 CRUD, 검색, 페이징 기능으로 구현한 계정 관리 웹 프로젝트입니다.
+
+- 사내 계정을 SQL로 관리하던 방식에서 개선하고자 웹 애플리케이션으로 개발했으며, 계정 관리 업무 효율이 증가하는 성과를 보였습니다.
