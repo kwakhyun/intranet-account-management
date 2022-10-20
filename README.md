@@ -11,4 +11,4 @@
 함께 입사자/퇴사자 계정 관리 업무를 담당하는 동료의 피드백을 받아, 계정 정보를 추가 또는 수정하는 부분에서 input 텍스트 입력 방식이었던 항목을 radio 방식으로 전환했으며, 검색창 위치를 리스트 하단에서 상단으로 변경했습니다.
 
 ### 사용 스택
-`Java` `Spring` `Oracle DB` `jQuery` `Bootstrap`
+`Java` `JSP` `Spring` `Oracle DB` `jQuery`
